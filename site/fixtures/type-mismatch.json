@@ -1,0 +1,5 @@
+{
+  "error" : "typeMismatch(Swift.Int, Swift.DecodingError.Context(codingPath: [CodingKeys(stringValue: \"user\", intValue: nil), CodingKeys(stringValue: \"age\", intValue: nil)], debugDescription: \"Expected to decode Int but found a string instead.\", underlyingError: nil))",
+  "json" : "{\"user\": {\"name\": \"Alice\", \"age\": \"twenty-five\"}}",
+  "name" : "Type mismatch - expected Int, got String"
+}

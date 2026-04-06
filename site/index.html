@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CodingPath Visualizer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="app-header">
+    <h1>CodingPath Visualizer</h1>
+    <p class="subtitle">Paste JSON and a Swift DecodingError to see exactly where decoding failed.</p>
+  </header>
+
+  <main class="app-main">
+    <div class="inputs-panel">
+      <div class="input-group">
+        <label for="json-input">JSON</label>
+        <textarea
+          id="json-input"
+          spellcheck="false"
+          autocomplete="off"
+          placeholder='{"user": {"name": "Alice", "age": "twenty-five"}}'
+        ></textarea>
+      </div>
+      <div class="input-group">
+        <label for="error-input">DecodingError</label>
+        <textarea
+          id="error-input"
+          spellcheck="false"
+          autocomplete="off"
+          placeholder='typeMismatch(Swift.Int, Swift.DecodingError.Context(codingPath: [...], debugDescription: "..."))'
+        ></textarea>
+      </div>
+      <div class="examples-bar">
+        <span class="examples-label">Examples</span>
+        <div id="examples"></div>
+      </div>
+    </div>
+
+    <div class="output-panel">
+      <div id="path-display" class="path-display" hidden></div>
+      <div id="output"></div>
+    </div>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>

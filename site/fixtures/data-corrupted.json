@@ -1,0 +1,5 @@
+{
+  "error" : "dataCorrupted(Swift.DecodingError.Context(codingPath: [CodingKeys(stringValue: \"events\", intValue: nil), _CodingKey(stringValue: \"Index 0\", intValue: 0)], debugDescription: \"Expected date string to be ISO8601-formatted.\", underlyingError: nil))",
+  "json" : "{\"events\": [{\"title\": \"Launch\", \"date\": \"not-a-date\"}]}",
+  "name" : "Data corrupted - invalid date string"
+}

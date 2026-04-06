@@ -1,0 +1,5 @@
+{
+  "error" : "valueNotFound(Swift.String, Swift.DecodingError.Context(codingPath: [CodingKeys(stringValue: \"user\", intValue: nil), CodingKeys(stringValue: \"email\", intValue: nil)], debugDescription: \"Cannot get value of type String -- found null value instead\", underlyingError: nil))",
+  "json" : "{\"user\": {\"name\": \"Alice\", \"email\": null}}",
+  "name" : "Value not found - expected String, got null"
+}

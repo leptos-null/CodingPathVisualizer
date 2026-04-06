@@ -1,0 +1,5 @@
+{
+  "error" : "keyNotFound(CodingKeys(stringValue: \"email\", intValue: nil), Swift.DecodingError.Context(codingPath: [CodingKeys(stringValue: \"user\", intValue: nil)], debugDescription: \"No value associated with key CodingKeys(stringValue: \\\"email\\\", intValue: nil) (\\\"email\\\").\", underlyingError: nil))",
+  "json" : "{\"user\": {\"name\": \"Alice\"}}",
+  "name" : "Key not found - missing \"email\" key"
+}

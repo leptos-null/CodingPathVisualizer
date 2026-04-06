@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Parser Tests</title>
+    <style>
+        :root {
+            color-scheme: light dark;
+            --pass: #16a34a;
+            --fail: #dc2626;
+            --pre-bg: #f3f4f6;
+        }
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --pass: #4ade80;
+                --fail: #f87171;
+                --pre-bg: #1e1e2e;
+            }
+        }
+        body { font-family: system-ui, sans-serif; max-width: 800px; margin: 2rem auto; padding: 0 1rem; }
+        .pass { color: var(--pass); }
+        .fail { color: var(--fail); }
+        pre { background: var(--pre-bg); padding: 0.75rem; border-radius: 4px; overflow-x: auto; font-size: 0.85rem; }
+        details { margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body>
+    <h1>Parser Tests</h1>
+    <div id="summary"></div>
+    <div id="results"></div>
+
+    <script type="module">
+        import { loadTests, runTests } from "./parser.test.js";
+
+        const tests = await loadTests();
+        const results = runTests(tests);
+        const passed = results.filter(r => r.pass).length;
+        const total = results.length;
+
+        const summary = document.getElementById("summary");
+        const summaryP = document.createElement("p");
+        summaryP.className = passed === total ? "pass" : "fail";
+        const strong = document.createElement("strong");
+        strong.textContent = `${passed}/${total} passed`;
+        summaryP.appendChild(strong);
+        summary.appendChild(summaryP);
+
+        const resultsDiv = document.getElementById("results");
+        for (const result of results) {
+            const details = document.createElement("details");
+            details.open = !result.pass;
+
+            const detailsSummary = document.createElement("summary");
+            detailsSummary.className = result.pass ? "pass" : "fail";
+            detailsSummary.textContent = `${result.pass ? "\u2713" : "\u2717"} ${result.name}`;
+            details.appendChild(detailsSummary);
+
+            if (!result.pass) {
+                const preExpected = document.createElement("pre");
+                preExpected.textContent = `Expected: ${JSON.stringify(result.expected, null, 2)}`;
+                details.appendChild(preExpected);
+
+                const preActual = document.createElement("pre");
+                preActual.textContent = `Actual:   ${JSON.stringify(result.actual, null, 2)}`;
+                details.appendChild(preActual);
+            }
+
+            resultsDiv.appendChild(details);
+        }
+    </script>
+</body>
+</html>

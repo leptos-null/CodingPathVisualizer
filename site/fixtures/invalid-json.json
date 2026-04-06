@@ -1,0 +1,5 @@
+{
+  "error" : "dataCorrupted(Swift.DecodingError.Context(codingPath: [], debugDescription: \"The given data was not valid JSON.\", underlyingError: Optional(Error Domain=NSCocoaErrorDomain Code=3840 \"Unexpected character 'o' in expected null value around line 1, column 2.\" UserInfo={NSDebugDescription=Unexpected character 'o' in expected null value around line 1, column 2., NSJSONSerializationErrorIndex=1})))",
+  "json" : "not valid json",
+  "name" : "Data corrupted - invalid JSON"
+}
