@@ -53,18 +53,31 @@ class Parser {
     }
 
     parseErrorCase() {
-        const cases = ["typeMismatch", "valueNotFound", "keyNotFound", "dataCorrupted"];
-        for (const c of cases) {
-            if (this.input.startsWith(c, this.pos)) {
-                this.pos += c.length;
-                return c;
+        for (const prefix of ["Swift.DecodingError.", "DecodingError.", ""]) {
+            if (this.input.startsWith(prefix, this.pos)) {
+                const afterPrefix = this.pos + prefix.length;
+                for (const c of ["typeMismatch", "valueNotFound", "keyNotFound", "dataCorrupted"]) {
+                    if (this.input.startsWith(c, afterPrefix)) {
+                        this.pos = afterPrefix + c.length;
+                        return c;
+                    }
+                }
             }
         }
         throw new Error(`Expected error case at position ${this.pos}`);
     }
 
     parseContext() {
-        this.expect("Swift.DecodingError.Context(");
+        for (const prefix of ["Swift.DecodingError.Context(", "DecodingError.Context(", "Context("]) {
+            if (this.input.startsWith(prefix, this.pos)) {
+                this.pos += prefix.length;
+                return this._parseContextBody();
+            }
+        }
+        throw new Error(`Expected DecodingError.Context at position ${this.pos}`);
+    }
+
+    _parseContextBody() {
         const codingPath = this.parseCodingPathField();
         this.expect(", ");
         const debugDescription = this.parseDebugDescriptionField();
